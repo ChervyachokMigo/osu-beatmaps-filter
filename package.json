@@ -1,0 +1,19 @@
+{
+  "name": "osu-beatmaps-filter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+	"osu": "npm run start osu",
+	"taiko": "npm run start taiko",
+	"fruits": "npm run start fruits",
+	"mania": "npm run start mania"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "osu-tools": "github:ChervyachokMigo/osu-tools"
+  }
+}
