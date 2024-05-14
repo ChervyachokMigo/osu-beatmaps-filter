@@ -16,11 +16,12 @@ const beatmaps_sliders = [];
 
 const offset_list = [
 	{s: 0, len: 1},
-	{s: 1, len: 1},
 	{s: 1, len: 2},
 	{s: 3, len: 2},
 	{s: 100, len: 1}
 ]
+
+const add_zero = (i) => i < 10 ? `00`+i : i >= 10 || i <=99 ? '0'+ i : i;
 
 for (let i = 0; i <= 100; i++){
 	const offset_item = offset_list.find( x => i >= x.s && i < x.s + x.len );
@@ -43,7 +44,7 @@ for (let i = 0; i <= 100; i++){
 		sliders_percent < (i + offset_len)
 	}
 	);
-	beatmaps_sliders.push({name: `!mania sliders ${i}%-${i>=100 ? 100 : i+offset_len}%`, beatmaps_md5: beatmaps.map( x => x.beatmap_md5) });
+	beatmaps_sliders.push({name: `!mania sliders ${add_zero(i)}%-${i>= 100 ? 100 : add_zero(i+offset_len)}%`, beatmaps_md5: beatmaps.map( x => x.beatmap_md5) });
 }
 
 console.log(beatmaps_sliders.map( x => x.name))
