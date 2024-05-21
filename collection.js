@@ -51,6 +51,22 @@ console.log(beatmaps_sliders.map( x => x.name))
 
 const collections = collection_db_load( path.join(osu_path, 'collection.db'));
 
-collections.collections = collections.collections.concat(beatmaps_sliders);
+const collection_to_save = [];
+
+for (let x of beatmaps_sliders) {
+	const idx = collections.collections.findIndex( v => v.name === x.name);
+	if (idx > -1){
+		const new_beatmaps = x.beatmaps_md5.filter( beatmap => collections.collections[idx].beatmaps_md5.indexOf(beatmap) === -1);
+		if (new_beatmaps && new_beatmaps.length > 0) {
+			collection_to_save.push({name: x.name, beatmaps_md5: new_beatmaps });
+		}
+	} else {
+		collection_to_save.push(x);
+	}
+}
+
+console.log('new beatmaps', collection_to_save)
+
+collections.collections = collections.collections.concat(collection_to_save);
 
 collection_db_save ( collections, 'collection.db' );

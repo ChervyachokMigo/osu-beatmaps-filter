@@ -8,7 +8,8 @@
 	"osu": "npm run start osu",
 	"taiko": "npm run start taiko",
 	"fruits": "npm run start fruits",
-	"mania": "npm run start mania"
+	"mania": "npm run start mania",
+	"collection_mania": "node collection.js"
   },
   "keywords": [],
   "author": "",
