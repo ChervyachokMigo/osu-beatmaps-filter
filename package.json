@@ -9,7 +9,8 @@
 	"taiko": "npm run start taiko",
 	"fruits": "npm run start fruits",
 	"mania": "npm run start mania",
-	"collection_mania": "node collection.js"
+	"collection_mania": "node collection.js",
+	"delete_beatmaps": "node delete_beatmaps.js"
   },
   "keywords": [],
   "author": "",
