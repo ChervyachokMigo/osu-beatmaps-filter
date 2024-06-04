@@ -12,10 +12,11 @@ if (args.length == 0) {
 	process.exit(0);
 }
 
-const selected_gamemode = args.shift() || null;
-const selected_gamemode_idx = gamemodes.indexOf(selected_gamemode);
+const selected_gamemode = args.map( x => x.trim( )) || null;
+const selected_gamemodes_idx = selected_gamemode.map( x => gamemodes.indexOf(x)) || [];
 
-if (selected_gamemode && selected_gamemode_idx == -1) {
+
+if (!selected_gamemode || selected_gamemode && selected_gamemode.length == 0 || !selected_gamemodes_idx || selected_gamemodes_idx.length == 0) {
     console.log( "Invalid gamemode: " + selected_gamemode );
     process.exit(0);
 }
@@ -42,7 +43,7 @@ songs_get_all_beatmaps(osu_path, beatmap_props, scan_opts, (beatmaps, folder) =>
 	});
 });
 
-const filtered_beatmaps = songs_beatmaps.filter( x => x.gamemode !== selected_gamemode_idx );
+const filtered_beatmaps = songs_beatmaps.filter( x => selected_gamemodes_idx.indexOf(x.gamemode) == -1 );
 
 move_to(filtered_beatmaps, 	
 	path.join(osu_path, 'Songs'), 
@@ -56,7 +57,7 @@ songs_get_all_beatmaps(osu_path, beatmap_props, {...scan_opts, songs_folder: bac
 	});
 });
 
-const filtered_backup_beatmaps = songs_backups.filter( x => x.gamemode === selected_gamemode_idx );
+const filtered_backup_beatmaps = songs_backups.filter( x => selected_gamemodes_idx.indexOf(x.gamemode) > -1 );
 
 move_to(filtered_backup_beatmaps, 	
 	path.join(osu_path, backup_folder),

@@ -9,6 +9,7 @@
 	"taiko": "npm run start taiko",
 	"fruits": "npm run start fruits",
 	"mania": "npm run start mania",
+	"taiko mania": "npm run start taiko mania",
 	"collection_mania": "node collection.js",
 	"delete_beatmaps": "node delete_beatmaps.js"
   },

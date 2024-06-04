@@ -6,6 +6,6 @@ module.exports = {
 		min_number_objects: 30,
 		min_drain_time: 30,
 		min_total_time: 30,
-		backup_instead_delete: false
+		backup_instead_delete: true
 	}
 }
