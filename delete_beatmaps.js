@@ -1,5 +1,5 @@
 const path = require('path');
-const { osu_db_load, beatmap_property, osu_db_find_beatmaps, collection_db_save, collection_db_load } = require("osu-tools");
+const { osu_db_load, beatmap_property, osu_db_find_beatmaps, collection_db_save, collection_db_load, RankedStatus, Gamemode } = require("osu-tools");
 const fs = require('fs');
 
 const { move_to_2, delete_from } = require('./tools.js');
@@ -14,6 +14,7 @@ const beatmap_props = [
 	beatmap_property.beatmap_md5,
 
 	beatmap_property.gamemode,
+	beatmap_property.ranked_status,
 
 	beatmap_property.number_sliders,
 	beatmap_property.number_hitcircles,
@@ -40,17 +41,25 @@ osu_db_find_beatmaps(osu_db_beatmaps, x => {
 
 	const count_objects = x.number_hitcircles + x.number_hitcircles + x.number_spinners;
 
-	if (count_objects < conf_delete_beatmaps.min_number_objects) {
+	if (conf_delete_beatmaps.min_number_objects && count_objects < conf_delete_beatmaps.min_number_objects) {
 		beatmaps_to_delete.push(x);
 	}
 
-	if(x.drain_time < conf_delete_beatmaps.min_drain_time) {
+	if(conf_delete_beatmaps.min_drain_time && x.drain_time < conf_delete_beatmaps.min_drain_time) {
 		beatmaps_to_delete.push(x);
 	}
 
-	if(x.total_time < conf_delete_beatmaps.min_total_time) {
+	if(conf_delete_beatmaps.min_total_time && x.total_time < conf_delete_beatmaps.min_total_time) {
 		beatmaps_to_delete.push(x);
 	}
+
+	if (conf_delete_beatmaps.ranked_status && x.ranked_status_int == conf_delete_beatmaps.ranked_status) {
+        beatmaps_to_delete.push(x);
+    }
+
+	if (conf_delete_beatmaps.gamemode && x.gamemode_int == conf_delete_beatmaps.gamemode) {
+        beatmaps_to_delete.push(x);
+    }
 
 });
 
