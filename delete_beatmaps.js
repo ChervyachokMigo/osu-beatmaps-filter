@@ -53,13 +53,21 @@ osu_db_find_beatmaps(osu_db_beatmaps, x => {
 		beatmaps_to_delete.push(x);
 	}
 
-	if (conf_delete_beatmaps.ranked_status && x.ranked_status_int == conf_delete_beatmaps.ranked_status) {
-        beatmaps_to_delete.push(x);
-    }
+	if (conf_delete_beatmaps.ranked_status && conf_delete_beatmaps.gamemode) {
+		if (x.ranked_status_int == conf_delete_beatmaps.ranked_status) {
+			if (x.gamemode_int == conf_delete_beatmaps.gamemode) {
+				beatmaps_to_delete.push(x);
+			}
+		}
+	} else {
+		if (conf_delete_beatmaps.ranked_status && x.ranked_status_int == conf_delete_beatmaps.ranked_status) {
+			beatmaps_to_delete.push(x);
+		}
 
-	if (conf_delete_beatmaps.gamemode && x.gamemode_int == conf_delete_beatmaps.gamemode) {
-        beatmaps_to_delete.push(x);
-    }
+		if (conf_delete_beatmaps.gamemode && x.gamemode_int == conf_delete_beatmaps.gamemode) {
+			beatmaps_to_delete.push(x);
+		}
+	}
 
 });
 
