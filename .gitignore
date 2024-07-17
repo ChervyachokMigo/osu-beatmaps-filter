@@ -2,3 +2,6 @@ node_modules
 collection.db
 beatmaps_hit_objects
 z-pattern
+livo4/osu\!.db
+livo4_new/osu\!.db
+test.js
