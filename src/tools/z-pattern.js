@@ -4,7 +4,7 @@ const path = require('path');
 
 
 
-const { osu_path } = require('./config.js');
+const { osu_path } = require('../config.js');
 const { check_folder } = require('./tools.js');
 
 const gamemodes = ['osu', 'taiko', 'fruits', 'mania'];

@@ -1,6 +1,6 @@
 const path = require('path');
 const { osu_db_load, beatmap_property, collection_db_save, collection_db_load } = require("osu-tools");
-const { osu_path } = require('./config.js');
+const { osu_path } = require('../config.js');
 
 
 const beatmap_props = [

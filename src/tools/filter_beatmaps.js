@@ -2,7 +2,7 @@ const path = require('path');
 const { songs_get_all_beatmaps, osu_file_beatmap_property} = require('osu-tools');
 
 const { move_to } = require('./tools.js');
-const { osu_path, backup_folder } = require('./config.js');
+const { osu_path, backup_folder } = require('../config.js');
 
 const gamemodes = ['osu', 'taiko', 'fruits', 'mania'];
 const args = process.argv.slice(2);

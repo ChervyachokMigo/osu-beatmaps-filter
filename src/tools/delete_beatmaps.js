@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const { move_to_2, delete_from } = require('./tools.js');
 
-const { conf_delete_beatmaps, osu_path, backup_folder } = require('./config.js');
+const { conf_delete_beatmaps, osu_path, backup_folder } = require('../config.js');
 
 
 const beatmap_props = [
