@@ -2,8 +2,14 @@
   "name": "osu-beatmaps-filter",
   "version": "1.0.0",
   "description": "beatmaps tools",
-  "main": "src/web/index.js",
+  "productName": "my-new-app",
+  "main": ".webpack/main",
   "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
     "start_old": "node index.js",
     "osu": "npm run start osu",
     "taiko": "npm run start taiko",
@@ -12,17 +18,12 @@
     "taiko_mania": "npm run start taiko mania",
     "osu_taiko_mania": "npm run start osu taiko mania",
     "collection_mania": "node collection.js",
-    "delete_beatmaps": "node delete_beatmaps.js",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "delete_beatmaps": "node delete_beatmaps.js"
   },
-  "keywords": [],
-  "author": "SadGod",
-  "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
     "@electron-forge/cli": "^7.4.0",
     "@electron-forge/maker-deb": "^7.4.0",
     "@electron-forge/maker-rpm": "^7.4.0",
@@ -30,10 +31,29 @@
     "@electron-forge/maker-zip": "^7.4.0",
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron-forge/plugin-webpack": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "^31.2.1"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vercel/webpack-asset-relocator-loader": "1.7.3",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.11.0",
+    "electron": "31.2.1",
+    "electron-devtools-installer": "^3.2.0",
+    "node-loader": "^2.0.0",
+    "react-devtools-electron": "^4.7.0",
+    "style-loader": "^3.3.4"
   },
+  "keywords": [],
+  "author": {
+    "name": "ChervyachokMigo",
+    "email": "github@svdgod.ru"
+  },
+  "license": "MIT",
   "dependencies": {
-    "osu-tools": "github:ChervyachokMigo/osu-tools"
+    "electron-squirrel-startup": "^1.0.1",
+    "osu-tools": "github:ChervyachokMigo/osu-tools",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
