@@ -1,6 +1,8 @@
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow, session, dialog } = require('electron');
 const path = require('node:path');
 const os = require('node:os');
+
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 const reactDevToolsPath = path.join(
 	os.homedir(),
@@ -20,11 +22,15 @@ const createWindow = () => {
 		webPreferences: {
 		preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 		nodeIntegration: true,
+		contextIsolation: false,
+
 		},
 	});
 
 	// and load the index.html of the app.
 	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+	mainWindow.removeMenu();
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
@@ -65,3 +71,14 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+function dialogSaveAs(filename = ''){
+    // app.getPath("desktop")       // User's Desktop folder
+    // app.getPath("documents")     // User's "My Documents" folder
+    // app.getPath("downloads")     // User's Downloads folder
+
+    const defaultPath = path.resolve(app.getPath("desktop"), path.basename(filename) );
+
+    return dialog.showSaveDialogSync({ defaultPath });
+
+}

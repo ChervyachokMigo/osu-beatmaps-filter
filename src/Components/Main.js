@@ -1,11 +1,12 @@
+import {ToolsSelector} from "./ToolsSelector";
+import {StarrateFix} from "./StarrateFix";
 
 
 export default function Main() {
 
-	console.log('hello')
-	return (
-		<div>
-			unknown page
-		</div>
+	return (<div>
+		<ToolsSelector />
+		<StarrateFix />
+	</div>
 	)
 }
