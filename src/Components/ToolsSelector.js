@@ -6,7 +6,7 @@ export const ToolsSelector = (args) => {
 	const {name, setName} = useContext(SelectedToolsContext);
 	
 	useEffect( () => {
-		console.log(name);
+		console.log('selected tools', name);
 	}, [name]);
 
 	return (

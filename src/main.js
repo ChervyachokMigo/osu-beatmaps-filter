@@ -1,18 +1,18 @@
-const { app, BrowserWindow, session, dialog } = require('electron');
-const path = require('node:path');
-const os = require('node:os');
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const starrate_fix = require('./tools/osu_db_fix_starrate');
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+/*process.env['NODE_OPTIONS'] = '--max-old-space-size=10000';*/
+//process.env['NODE_ENV'] = '--max-old-space-size=10000';
 
-const reactDevToolsPath = path.join(
-	os.homedir(),
-	'/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/5.3.1_0'
-)
+//console.log('process.env', process.env)
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
 	app.quit();
 }
+console.log(require('node:v8').getHeapStatistics())
+console.log(require('node:v8').getHeapStatistics().total_available_size/1024/1024, __filename );
 
 const createWindow = () => {
   // Create the browser window.
@@ -22,11 +22,15 @@ const createWindow = () => {
 		webPreferences: {
 		preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 		nodeIntegration: true,
+		disableDialogs: false,
 		contextIsolation: false,
-
+		nodeIntegrationInWorker: true,
+		nodeIntegrationInSubFrames: true,
+		sandbox: false,
+		webSecurity: false
 		},
 	});
-
+	
 	// and load the index.html of the app.
 	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
@@ -34,14 +38,30 @@ const createWindow = () => {
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
+
 };
+
+app.commandLine.appendSwitch('js-flags', '--max-old-space-size=10000');
+app.commandLine.appendSwitch('--no-sandbox', true);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then( async () => {
 
-	await session.defaultSession.loadExtension(reactDevToolsPath);
+app.whenReady().then( async () => {
+	
+	ipcMain.handle('open-file', (event, options) => {
+		return dialog.showOpenDialogSync(options);
+	});
+
+	ipcMain.handle('save-file', (event, options) => {
+		return dialog.showSaveDialogSync(options);
+	});
+
+	ipcMain.handle('starrate-fix', (event, options) => {
+		starrate_fix(options.input_path, options.output_path);
+		return true;
+	});
 
 	createWindow();
 
@@ -49,7 +69,7 @@ app.whenReady().then( async () => {
 	// dock icon is clicked and there are no other windows open.
 	app.on('activate', () => {
 		if (BrowserWindow.getAllWindows().length === 0) {
-		createWindow();
+			createWindow();
 		}
 	});
 
@@ -69,16 +89,3 @@ app.on('window-all-closed', () => {
 	}
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
-
-function dialogSaveAs(filename = ''){
-    // app.getPath("desktop")       // User's Desktop folder
-    // app.getPath("documents")     // User's "My Documents" folder
-    // app.getPath("downloads")     // User's Downloads folder
-
-    const defaultPath = path.resolve(app.getPath("desktop"), path.basename(filename) );
-
-    return dialog.showSaveDialogSync({ defaultPath });
-
-}

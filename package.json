@@ -5,7 +5,8 @@
   "productName": "my-new-app",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start",
+    "help": "electron --help",
+    "start": "set ELECTRON_RUN_AS_NODE=true && set NODE_OPTIONS=\"--max-old-space-size=10096\" && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
@@ -52,8 +53,9 @@
   "license": "MIT",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
-    "osu-tools": "github:ChervyachokMigo/osu-tools",
+    "osu-tools": "^0.1.42",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
