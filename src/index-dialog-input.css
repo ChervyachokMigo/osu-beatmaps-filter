@@ -1,0 +1,83 @@
+
+.input_file_dialog {
+    display: flex;
+	flex-direction: column;
+    z-index: 100;
+    background: #dcdcdc;
+	padding: 4px 6px 8px 6px;
+    border: 2px solid #afafaf;
+    border-radius: 6px;
+    margin: auto;
+	min-width: 250px;
+}
+
+.input_file_dialog .header {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+	align-items: center;
+}
+
+.input_file_dialog .title {
+    font-size: medium;
+	font-weight: 500;
+	text-align: center;
+    width: 90%;
+}
+
+.input_file_dialog .close {
+	width: 17px;
+    height: 17px;
+    display: block;
+}
+
+.input_file_dialog .close button {
+	width: 17px;
+    height: 17px;
+    padding: 0;
+    display: block;
+    background-color: #f0f0f0;
+	border-radius: 5px;
+    border: 1px solid #808080;
+}
+
+.input_file_dialog .close button:hover {
+	background-color: rgb(21, 142, 255);
+}
+
+.input_file_dialog .current_path {
+    font-size: small;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin: 3px 0 0 0;
+    display: flex;
+	min-height: 16px;
+	max-width: 600px;
+    padding: 0 5px;
+    align-items: center;
+    justify-content: flex-start;
+	height: auto;
+}
+
+.input_file_dialog .FileList {
+	border: 2px dashed #afafaf;
+    margin-top: 5px;
+    padding: 4px 4px 4px 4px;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	height: 250px;
+    overflow: auto;
+}
+
+.input_file_dialog .file {
+	padding: 0 5px 0 5px;
+	max-width: 572px;
+}
+
+.input_file_dialog .file:hover {
+	background-color: rgb(21, 142, 255);
+	color: #ffffff;
+	cursor: pointer;
+}
