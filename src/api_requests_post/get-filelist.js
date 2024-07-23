@@ -10,16 +10,19 @@ const get_drives = () => execSync('wmic logicaldisk get name', {encoding: 'utf8'
 
 const drives = get_drives();
 
-const get_filelist = (dir_path, accept_exts = null) => {
+const get_filelist = (dir_path, accept_exts = null, offset = 0, limit = 1000 ) => {
 
 	if (dir_path.length == 0) {
 		return drives.map( x => ({directory: true, name: x, ext: '' }));
 
 	} else {
+		const ends_with_slash = dir_path.endsWith('\\');
+		const dir_path_with_end_slash = !ends_with_slash ? dir_path + '\\' : dir_path;
 		return [{directory: true, name: '..', ext: ''}, 
-			...readdirSync( dir_path, {encoding: 'utf8', withFileTypes: true})
+			...readdirSync( dir_path_with_end_slash, {encoding: 'utf8', withFileTypes: true})
 			.map( x => ({directory: x.isDirectory(), name: x.name, ext: path.extname(x.name) }))]
-			.filter ( x => accept_exts? x.directory || (x.ext && accept_exts.includes(x.ext)) : true );
+			.filter ( x => accept_exts? x.directory || (x.ext && accept_exts.includes(x.ext)) : true )
+			.filter( (x, i) => i >= offset && i < offset + limit );
 	}
 }
 
