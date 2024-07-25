@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { DialogActiveContext, SelectedToolsContext } from "../Contexts/main";
 
-import { OpenFileDialog } from "./OpenFileDialog";
-import { SaveFileDialog } from "./SaveFileDialog";
 import { dialog_names } from "../consts";
 import { POST } from "../tools/request_api";
+import { FileDialog } from "./FileDialog";
 
 export const StarrateFix = (args) => {
 
@@ -44,12 +43,13 @@ export const StarrateFix = (args) => {
 					</div>
 
 					<button className="input_file_button" 
-						onClick={() => input_dialog.setActive(!input_dialog.active)} >
+						onClick={() => input_dialog.setActive(true)} >
 						select
 					</button>
 
-					<OpenFileDialog 
+					<FileDialog 
 						title="Select input osu!.db"
+						type='open_file'
 						onClickFile={setInputFile}
 						dialog_name={dialog_names.input}
 						accept_ext='.db'
@@ -60,12 +60,13 @@ export const StarrateFix = (args) => {
 					</div>
 
 					<button className="output_file_button" 
-						onClick={() => output_dialog.setActive(!output_dialog.active)} >
+						onClick={() => output_dialog.setActive(true)} >
 						select
 					</button>
 
-					<SaveFileDialog 
+					<FileDialog 
 						title="Select output osu!.db"
+						type='save_file'
 						onClickOK={setOutputFile}
 						dialog_name={dialog_names.output}
 						accept_ext='.db'

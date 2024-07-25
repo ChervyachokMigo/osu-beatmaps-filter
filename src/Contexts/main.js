@@ -13,11 +13,10 @@ export function DialogsPrepare() {
 
 export function DialogActiveContext(args) {
     const res = DialogsActive.find( x => x.name === args.dialog_name );
-	console.log(args.dialog_name)
 	if(res){
 		return res.context;
 	} else {
-   	 return null;
+		return null;
     }
 }
 
