@@ -46,6 +46,7 @@
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@svgr/webpack": "^8.1.0",
+    "axios": "^1.7.2",
     "babel-plugin-named-asset-import": "^0.3.8",
     "babel-preset-react-app": "^10.0.1",
     "body-parser": "^1.20.2",

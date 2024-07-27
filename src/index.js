@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { DialogsPrepare, SelectedToolsProvider } from './Contexts/main';
+import { DialogsPrepare, SelectedToolsProvider } from './Components/Contexts/main';
 import Main from './Components/Main';
 import './index.css';
 

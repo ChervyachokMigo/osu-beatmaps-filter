@@ -1,5 +1,5 @@
 const { existsSync } = require("fs");
-const osu_db_fix_starrate = require("../tools/osu_db_fix_starrate");
+const action = require("../api_tools/osu_db_fix_starrate");
 
 module.exports = async (req, res) => {
 	const input = req.body.input_path;
@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 		throw new Error(`Input file not found: ${input}`);
 	}
 
-	osu_db_fix_starrate(input, output);
+	action(input, output);
 
 	await res.send(JSON.stringify({response: 'fix starrate complete'}));
 }

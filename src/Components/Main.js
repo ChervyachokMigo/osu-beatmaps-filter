@@ -1,7 +1,7 @@
 import { ToolsSelector } from "./ToolsSelector";
 import { StarrateFix } from "./StarrateFix";
 import { dialog_names } from "../consts";
-import { DialogsActiveProvider } from "../Contexts/main";
+import { DialogsActiveProvider } from "./Contexts/main";
 
 
 export default function Main() {

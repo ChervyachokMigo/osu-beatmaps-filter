@@ -1,9 +1,10 @@
 import { useContext, useState } from "react"
-import { DialogActiveContext, SelectedToolsContext } from "../Contexts/main";
+import { DialogActiveContext, SelectedToolsContext } from "./Contexts/main";
 
 import { dialog_names } from "../consts";
 import { POST } from "../tools/request_api";
 import { FileDialog } from "./FileDialog";
+import { ActionStatus } from "./Consts/main";
 
 export const StarrateFix = (args) => {
 
@@ -15,17 +16,21 @@ export const StarrateFix = (args) => {
 	const [inputFile, setInputFile] = useState('');
 	const [outputFile, setOutputFile] = useState('');
 
+	const [status, setStatus] = useState(ActionStatus.idle);
 
 	const PerformAction = async () => {
+		setStatus(ActionStatus.processing);
 		POST('starrate-fix', {
 			input_path: inputFile,
             output_path: outputFile,
 
 		}).then( result => {
 			console.log(result);
+			setStatus(ActionStatus.finished);
 
 		}).catch( error => {
             console.error(error);
+			setStatus(ActionStatus.error);
 
         });
 	};
@@ -72,7 +77,18 @@ export const StarrateFix = (args) => {
 						accept_ext='.db'
 					/>
 
-					<button disabled={!inputFile ||!outputFile} onClick={PerformAction}>Fix Starrate</button>	
+					<button 
+						disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Fix Starrate
+					</button>
+
+					<div className="status">
+						{status === ActionStatus.processing && 'Processing...'}
+                        {status === ActionStatus.finished && 'Finished'}
+                        {status === ActionStatus.error && 'Error occurred'}
+                        {status === ActionStatus.idle && ''}
+					</div>
 					
 				</div>
 			</div>
