@@ -6,20 +6,23 @@ import { POST } from "../tools/request_api";
 import { FileDialog } from "./FileDialog";
 import { ActionStatus, ToolsNames } from "./Consts/main";
 
-export const StarrateFix = (args) => {
+export const ManiaSliderCollections = (args) => {
 
 	const {status, setStatus} = useContext(ActionStatusContext);
 	
 	const input_dialog = useContext(DialogActiveContext({ dialog_name: dialog_names.input }));
+	const input_2_dialog = useContext(DialogActiveContext({ dialog_name: dialog_names.input_2 }));
 	const output_dialog = useContext(DialogActiveContext({ dialog_name: dialog_names.output }));
 
 	const [inputFile, setInputFile] = useState('');
+	const [inputFile_2, setInputFile_2] = useState('');
 	const [outputFile, setOutputFile] = useState('');
 
 	const PerformAction = async () => {
 		setStatus(ActionStatus.processing);
-		POST('starrate-fix', {
+		POST('mania-slider-collections', {
 			input_path: inputFile,
+			input_2_path: inputFile_2,
             output_path: outputFile,
 
 		}).then( result => {
@@ -34,10 +37,11 @@ export const StarrateFix = (args) => {
 	};
 
 	const empty_input_text = "Select input osu!.db";
+	const empty_input_2_text = "Select input collection.db";
 	const empty_output_text = "Select output osu!.db";
 
 	return (<div className="starrate_fix_form">
-		<div className="description">Описание: {ToolsNames.desc}</div>
+		<div className="description">Описание: {ToolsNames.mania_slider_collections.desc}</div>
 			<div className="input-group">
 
 				<div className="input_path">
@@ -58,6 +62,24 @@ export const StarrateFix = (args) => {
 					accept_ext='.db'
 				/>
 
+				<div className="input_2_path">
+					Input: {!inputFile_2 ? empty_input_2_text : inputFile_2}
+				</div>
+
+				<button className="input_file_button" 
+					disabled={ status === ActionStatus.processing } 
+					onClick={() => input_2_dialog.setActive(true)} >
+					select
+				</button>
+
+				<FileDialog 
+					title="Select input collection.db"
+					type='open_file'
+					onClickFile={setInputFile_2}
+					dialog_name={dialog_names.input_2}
+					accept_ext='.db'
+				/>
+
 				<div className="output_path">
 					Output: {!outputFile ? empty_output_text : outputFile}
 				</div>
@@ -69,7 +91,7 @@ export const StarrateFix = (args) => {
 				</button>
 
 				<FileDialog 
-					title="Select output osu!.db"
+					title="Select output collection.db"
 					type='save_file'
 					onClickOK={setOutputFile}
 					dialog_name={dialog_names.output}
@@ -77,9 +99,9 @@ export const StarrateFix = (args) => {
 				/>
 
 				<button 
-					disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
+					disabled={ !inputFile || !inputFile_2 || !outputFile|| status === ActionStatus.processing } 
 					onClick={PerformAction}>
-						Fix Starrate
+						Create Mania Collection
 				</button>
 
 				<div className="status">

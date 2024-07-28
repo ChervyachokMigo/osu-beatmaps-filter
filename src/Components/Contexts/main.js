@@ -1,6 +1,7 @@
 
 import { createContext,  useState } from 'react'
 import { dialog_names } from '../../consts';
+import { ActionStatus } from "../Consts/main";
 
 const DialogsActive = [];
 
@@ -31,4 +32,11 @@ export const SelectedToolsContext = createContext( '' );
 export function SelectedToolsProvider({children}) {
 	const [name, setName] = useState('');
 	return (<SelectedToolsContext.Provider value={{name, setName}}>{children}</SelectedToolsContext.Provider>);
+}
+
+export const ActionStatusContext = createContext( ActionStatus.idle );
+
+export function ActionStatusProvider(args) {
+    const [status, setStatus] = useState(ActionStatus.idle);
+    return <ActionStatusContext.Provider value={{status, setStatus}}>{args.children}</ActionStatusContext.Provider>;
 }
