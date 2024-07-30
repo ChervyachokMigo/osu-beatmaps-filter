@@ -3,6 +3,8 @@ const { osu_db_load, beatmap_property, collection_db_save, collection_db_load } 
 
 module.exports = ( input_osu_db, input_collection_db, output ) => {
 
+	const tags_min_count = 10;
+
 	const beatmap_props = [
 		beatmap_property.beatmap_md5,
 		beatmap_property.gamemode,
@@ -23,12 +25,19 @@ module.exports = ( input_osu_db, input_collection_db, output ) => {
 		idx > -1 ? beatmaps_tags[idx].count++ : beatmaps_tags.push({ name, count: 1 });
 	};
 
-	osu_db_beatmaps.beatmaps.map( x => x.tags.length > 0 ? x.tags.split(' ').map( name => tag_add(name)) : null );
+	console.log('count tags');
+	osu_db_beatmaps.beatmaps.map( (x, i, arr) => {
+		if( i % Math.trunc(arr.length/1000) === 0 ) {
+			console.log(`Processing ${ (i/arr.length*100).toFixed(1) } %`);
+		}
+		return x.tags.length > 0 ? x.tags.split(' ').map( name => tag_add(name)) : null
+	});
 
-	beatmaps_tags = beatmaps_tags.filter( x => x.count > 10 );
-
+	console.log('filtering and sotring');
+	beatmaps_tags = beatmaps_tags.filter( x => x.count > tags_min_count );
 	beatmaps_tags.sort( (a, b) => b.count - a.count );
 
+	console.log('make collections');
 	for(let i = 0; i < beatmaps_tags.length; i++){
 		const beatmaps = osu_db_beatmaps.beatmaps.filter( 
 			x => x.tags.length > 0 && x.tags.indexOf(beatmaps_tags[i].name) > -1 )
