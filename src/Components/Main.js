@@ -16,13 +16,9 @@ export default function Main() {
 	const tool = ToolsValues[SelectedTools.name];
 
 	if (tool) {
-		setStatus(ActionStatus.idle);
 		return (<div>
-
 			<ToolsSelector />
-
 			{tool.tag}
-
 		</div>)
 	} else {
 		return (<div><ToolsSelector />No tool selected</div>)
