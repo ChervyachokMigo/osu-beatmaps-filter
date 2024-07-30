@@ -1,10 +1,10 @@
 import { ToolsSelector } from "./ToolsSelector";
-import { StarrateFix } from "./StarrateFix";
+import { StarrateFix } from "./ToolsViews/StarrateFix";
 import { dialog_names } from "../consts";
 import { ActionStatusContext, DialogsActiveProvider, SelectedToolsContext } from "./Contexts/main";
 import { useContext, useEffect } from "react";
 import { ActionStatus, ToolsNames } from "./Consts/main";
-import { ManiaSliderCollections } from "./ManiaSliderCollections";
+import { ManiaSliderCollections } from "./ToolsViews/ManiaSliderCollections";
 
 export default function Main() {
 	

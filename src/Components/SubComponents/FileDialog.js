@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { POST } from "../tools/request_api";
-import { DialogActiveContext } from "./Contexts/main";
+import { POST } from "../../tools/request_api";
+import { DialogActiveContext } from "../Contexts/main";
 
 export const FileDialog = (parrent) => {
 	const {active, setActive} = useContext(DialogActiveContext( parrent ));

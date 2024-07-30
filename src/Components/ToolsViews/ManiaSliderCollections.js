@@ -1,10 +1,10 @@
 import { useContext, useState } from "react"
-import { ActionStatusContext } from "./Contexts/main";
+import { ActionStatusContext } from "../Contexts/main";
 
-import { dialog_names } from "../consts";
-import { POST } from "../tools/request_api";
-import { ActionStatus, ToolsNames } from "./Consts/main";
-import { InOutPanel } from "./InOutPanel";
+import { dialog_names } from "../../consts";
+import { POST } from "../../tools/request_api";
+import { ActionStatus, ToolsNames } from "../Consts/main";
+import { InOutPanel } from "../SubComponents/InOutPanel";
 
 export const ManiaSliderCollections = (args) => {
 

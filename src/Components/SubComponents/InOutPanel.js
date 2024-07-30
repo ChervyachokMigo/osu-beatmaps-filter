@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { ActionStatusContext, DialogActiveContext } from "./Contexts/main";
+import { ActionStatusContext, DialogActiveContext } from "../Contexts/main";
 
 import { FileDialog } from "./FileDialog";
-import { ActionStatus, PanelValues } from "./Consts/main";
+import { ActionStatus, PanelValues } from "../Consts/main";
 
 const default_button_text = 'select';
 
