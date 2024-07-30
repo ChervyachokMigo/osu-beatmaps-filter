@@ -1,18 +1,22 @@
 import { ToolsSelector } from "./ToolsSelector";
 import { StarrateFix } from "./StarrateFix";
 import { dialog_names } from "../consts";
-import { ActionStatusProvider, DialogsActiveProvider, SelectedToolsContext } from "./Contexts/main";
-import { useContext } from "react";
-import { ToolsNames } from "./Consts/main";
+import { ActionStatusContext, DialogsActiveProvider, SelectedToolsContext } from "./Contexts/main";
+import { useContext, useEffect } from "react";
+import { ActionStatus, ToolsNames } from "./Consts/main";
 import { ManiaSliderCollections } from "./ManiaSliderCollections";
-
 
 export default function Main() {
 	
 	const SelectedTools = useContext(SelectedToolsContext);
+	const {setStatus} = useContext(ActionStatusContext);
+
+    useEffect( () => {
+		setStatus(ActionStatus.idle);
+	// eslint-disable-next-line
+	}, [SelectedTools.name]);
 
 	return (<div>
-		<ActionStatusProvider>
 
 			<ToolsSelector />
 
@@ -37,8 +41,6 @@ export default function Main() {
 					</DialogsActiveProvider>
 					</DialogsActiveProvider>
 			:<></>}
-
-		</ActionStatusProvider>
 
 	</div>)
 }

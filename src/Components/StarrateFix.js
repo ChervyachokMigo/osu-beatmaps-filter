@@ -1,18 +1,16 @@
 import { useContext, useState } from "react"
-import { ActionStatusContext, DialogActiveContext } from "./Contexts/main";
+import { ActionStatusContext } from "./Contexts/main";
 
 import { dialog_names } from "../consts";
 import { POST } from "../tools/request_api";
-import { FileDialog } from "./FileDialog";
+
 import { ActionStatus, ToolsNames } from "./Consts/main";
+import { InOutPanel } from "./InOutPanel";
 
 export const StarrateFix = (args) => {
 
 	const {status, setStatus} = useContext(ActionStatusContext);
 	
-	const input_dialog = useContext(DialogActiveContext({ dialog_name: dialog_names.input }));
-	const output_dialog = useContext(DialogActiveContext({ dialog_name: dialog_names.output }));
-
 	const [inputFile, setInputFile] = useState('');
 	const [outputFile, setOutputFile] = useState('');
 
@@ -33,47 +31,30 @@ export const StarrateFix = (args) => {
         });
 	};
 
-	const empty_input_text = "Select input osu!.db";
-	const empty_output_text = "Select output osu!.db";
-
 	return (<div className="starrate_fix_form">
 		<div className="description">Описание: {ToolsNames.desc}</div>
 			<div className="input-group">
 
-				<div className="input_path">
-					Input: {!inputFile ? empty_input_text : inputFile}
-				</div>
-
-				<button className="input_file_button" 
-					disabled={ status === ActionStatus.processing } 
-					onClick={() => input_dialog.setActive(true)} >
-					select
-				</button>
-
-				<FileDialog 
-					title="Select input osu!.db"
-					type='open_file'
-					onClickFile={setInputFile}
+				<InOutPanel 
+					panel_type='input'
+					display_path_default_text='Select input osu!.db'
 					dialog_name={dialog_names.input}
-					accept_ext='.db'
+					dialog_title='Select input osu!.db'
+					dialog_accept_ext='.db'
+					button_text='select'
+					filePath={inputFile}
+					setFilePath={setInputFile}
 				/>
 
-				<div className="output_path">
-					Output: {!outputFile ? empty_output_text : outputFile}
-				</div>
-
-				<button className="output_file_button" 
-					disabled={ status === ActionStatus.processing } 
-					onClick={() => output_dialog.setActive(true)} >
-					select
-				</button>
-
-				<FileDialog 
-					title="Select output osu!.db"
-					type='save_file'
-					onClickOK={setOutputFile}
+				<InOutPanel 
+					panel_type='output'
+					display_path_default_text='Select output osu!.db'
 					dialog_name={dialog_names.output}
-					accept_ext='.db'
+					dialog_title='Select output osu!.db'
+					dialog_accept_ext='.db'
+					button_text='select'
+					filePath={outputFile}
+					setFilePath={setOutputFile}
 				/>
 
 				<button 

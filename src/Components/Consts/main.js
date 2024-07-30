@@ -5,6 +5,18 @@ export const ActionStatus = {
     error: -1,
 }
 
+export const PanelValues = {
+	input: {
+		display_path_prefix_text: 'Input: ',
+		file_dialog_type: 'open_file'
+    },
+	output: {
+		display_path_prefix_text: 'Output: ',
+		file_dialog_type: 'save_file'
+	}
+}
+
+
 export const ToolsNames = {
 	none: {
 		name: '', 
