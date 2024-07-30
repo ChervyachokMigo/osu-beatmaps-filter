@@ -6,7 +6,7 @@ import { POST } from "../../tools/request_api";
 import { ActionStatus, ToolsValues } from "../Consts/main";
 import { InOutPanel } from "../SubComponents/InOutPanel";
 
-export const ManiaSliderCollections = (args) => {
+export const TagsCollections = (args) => {
 
 	const {status, setStatus} = useContext(ActionStatusContext);
 	
@@ -16,7 +16,7 @@ export const ManiaSliderCollections = (args) => {
 
 	const PerformAction = async () => {
 		setStatus(ActionStatus.processing);
-		POST('mania-slider-collections', {
+		POST('tags-collections', {
 			input_path: inputFile,
 			input_2_path: inputFile_2,
             output_path: outputFile,
@@ -32,8 +32,8 @@ export const ManiaSliderCollections = (args) => {
         });
 	};
 
-	return (<div className="mania_slider_collections_form">
-		<div className="description">Описание: {ToolsValues.mania_slider_collections.desc}</div>
+	return (<div className="tags_collections_form">
+		<div className="description">Описание: {ToolsValues.tags_collections.desc}</div>
 			<div className="input-group">
 				<InOutPanel 
 					panel_type='input'
@@ -71,7 +71,7 @@ export const ManiaSliderCollections = (args) => {
 				<button 
 					disabled={ !inputFile || !inputFile_2 || !outputFile|| status === ActionStatus.processing } 
 					onClick={PerformAction}>
-						Create Mania Collection
+						Create Tags Collections
 				</button>
 
 				<div className="status">

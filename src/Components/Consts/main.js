@@ -1,3 +1,7 @@
+import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
+import { StarrateFix } from "../ToolsViews/StarrateFix"
+import { TagsCollections } from "../ToolsViews/TagsCollections"
+
 export const ActionStatus = {
 	idle: 0,
 	processing: 1,
@@ -17,16 +21,29 @@ export const PanelValues = {
 }
 
 
-export const ToolsNames = {
+export const ToolsValues = {
 	none: {
 		name: '', 
-		title: 'Выбрать инструмент'},
+		title: 'Выбрать инструмент',
+		desc: '',
+		tag: ''
+	},
 	starrate_fix: {
 		name: 'starrate_fix', 
 		title: 'Starrate Fix',
-		desc: 'Инстумент удаляет все сложности из карты в базе с нулевым старрейтом'},
+		desc: 'Инстумент удаляет все сложности из карты в базе с нулевым старрейтом',
+		tag: <StarrateFix />
+	},
 	mania_slider_collections: {
 		name: 'mania_slider_collections', 
 		title: 'Mania Slider Collections',
-		desc: 'Создает коллекции слайдеров для osu!mania с определенным диапазоном старрейта'},
+		desc: 'Создает коллекции слайдеров для osu!mania с определенным диапазоном старрейта',
+		tag: <ManiaSliderCollections />
+	},
+	tags_collections: {
+		name: 'tags_collections', 
+        title: 'Tags Collections',
+        desc: 'Создает коллекции тегов для всех карт из базы osu',
+		tag: <TagsCollections />
+	}
 }
