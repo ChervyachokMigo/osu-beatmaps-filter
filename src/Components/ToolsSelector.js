@@ -26,10 +26,11 @@ export const ToolsSelector = (args) => {
 
 	return (
 		<div>
-			<select name="tools" disabled={status === ActionStatus.processing} onChange={(e) => {
-				setName(e.target.value)}}>
-				{tools_tags}
-				
+			<select 
+				name="tools" 
+				disabled={status === ActionStatus.processing} 
+				onChange={(e) => setName(e.target.value)}>
+					{tools_tags}
 			</select>
 		</div>
 	);
