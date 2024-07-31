@@ -58,14 +58,15 @@ export const FileDialog = (parrent) => {
 
 	const onClickOK = () => {
 		if (parrent.type === 'save_file') {
-			const filename = document.getElementById('save_filename').value;
+			const filename = document.getElementById(parrent.dialog_name + '_filename').value;
 			const res = filepath + '\\' + ( filename.endsWith(parrent.accept_ext) ? filename : filename + parrent.accept_ext );
 			parrent.onClickOK(res);
 			setActive(false);
 		}
 
 		if (parrent.type === 'dir') {
-			parrent.onClickOK(filepath);
+			const filename = document.getElementById(parrent.dialog_name + '_filename').value;
+			parrent.onClickOK(filename ? filepath + '\\' + filename : filepath);
 			setActive(false);
 		}
 	}
@@ -100,13 +101,14 @@ export const FileDialog = (parrent) => {
 				</div>
 				{ parrent.type === 'save_file' ? 
 					<div className="save_block">
-						<input id="save_filename" type="text" placeholder="filename"></input>
+						<input id={parrent.dialog_name + '_filename'} type="text" placeholder="filename"></input>
 						<button onClick={() => onClickOK() }>OK</button>
 					</div>
 				: '' }
 
 				{ parrent.type === 'dir' ? 
 					<div className="dir_block">
+						<input id={parrent.dialog_name + '_filename'} type="text" placeholder="filename"></input>
 						<button onClick={() => onClickOK() }>OK</button>
 					</div>
 				: '' }
