@@ -1,5 +1,5 @@
-const path = require("path");
-const { existsSync } = require("fs");
+const path = require("node:path");
+const { existsSync } = require("node:fs");
 const { osu_db_load, beatmap_property, collection_db_save, collection_db_load } = require("osu-tools");
 
 module.exports = ( input_osu_path, output ) => {

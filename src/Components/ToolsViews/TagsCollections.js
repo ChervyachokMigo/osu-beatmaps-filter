@@ -18,7 +18,7 @@ export const TagsCollections = (args) => {
 		POST('tags-collections', {
 			input_path: inputFile,
             output_path: outputFile,
-
+			
 		}).then( result => {
 			console.log(result);
 			setStatus(ActionStatus.finished);

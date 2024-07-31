@@ -1,6 +1,6 @@
-const { execSync } = require('child_process');
-const { readdirSync } = require('fs');
-const path = require('path');
+const { execSync } = require('node:child_process');
+const { readdirSync } = require('node:fs');
+const path = require('node:path');
 
 const default_path = path.join(require('os').homedir(), 'desktop');
 

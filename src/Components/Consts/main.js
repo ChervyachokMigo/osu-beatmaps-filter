@@ -1,3 +1,4 @@
+import { DeleteBeatmaps } from "../ToolsViews/DeleteBeatmaps"
 import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
 import { StarrateFix } from "../ToolsViews/StarrateFix"
 import { TagsCollections } from "../ToolsViews/TagsCollections"
@@ -35,7 +36,7 @@ export const ToolsValues = {
 	starrate_fix: {
 		name: 'starrate_fix', 
 		title: 'Starrate Fix',
-		desc: 'Инстумент удаляет все сложности из карты в базе с нулевым старрейтом',
+		desc: 'Удаляет все сложности из карты в базе с нулевым старрейтом',
 		tag: <StarrateFix />
 	},
 	mania_slider_collections: {
@@ -49,5 +50,11 @@ export const ToolsValues = {
         title: 'Tags Collections',
         desc: 'Создает коллекции тегов для всех карт из базы osu',
 		tag: <TagsCollections />
+	},
+	delete_beatmaps: {
+		name: 'delete_beatmaps', 
+        title: 'Delete Beatmaps',
+		desc: 'Удаляет карты по заданным критериям (только карты, без дополнительных файлов)',
+		tag: <DeleteBeatmaps />
 	}
 }

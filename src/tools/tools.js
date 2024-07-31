@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('node:fs')
+const path = require('node:path')
 
 const _this =module.exports = {
 	check_folder: (folderpath) => {
@@ -9,7 +9,12 @@ const _this =module.exports = {
 	},
 
 	move_to: (beatmaps, source_path, dest_path) => {
-		for (x of beatmaps) {
+		if (!beatmaps || !Array.isArray(beatmaps)){
+			console.error('Input should be an array');
+            return;
+		}
+
+		for (let x of beatmaps) {
 			const source_filepath = path.join(source_path, x.folder, x.beatmap_filename);
 			const dest_filepath = path.join(dest_path, x.folder, x.beatmap_filename);
 			try {
@@ -23,7 +28,12 @@ const _this =module.exports = {
 	},
 
 	move_to_2: (beatmaps, source_path, dest_path) => {
-		for (x of beatmaps) {
+		if (!beatmaps || !Array.isArray(beatmaps)){
+			console.error('Input should be an array');
+            return;
+		}
+
+		for (let x of beatmaps) {
 			const source_filepath = path.join(source_path, x.folder_name, x.osu_filename);
 			const dest_filepath = path.join(dest_path, x.folder_name, x.osu_filename);
 			try {
@@ -42,7 +52,12 @@ const _this =module.exports = {
 	},
 
 	delete_from: (beatmaps, source_path) => {
-		for (x of beatmaps) {
+		if (!beatmaps || !Array.isArray(beatmaps)){
+			console.error('Input should be an array');
+            return;
+		}
+
+		for (let x of beatmaps) {
 			const source_filepath = path.join(source_path, x.folder_name, x.osu_filename);
 			try {
 				if(fs.existsSync(source_filepath)) {

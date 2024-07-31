@@ -1,4 +1,4 @@
-const { existsSync } = require("fs");
+const { existsSync } = require("node:fs");
 const action = require("../api_tools/mania_slider_collections");
 
 module.exports = async (req, res) => {
@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 	const output = req.body.output_path;
 
 	if (!existsSync(osu_path)) {
-		throw new Error(`Input path not found: ${osu_path}`);
+		throw new Error(`Osu path not found: ${osu_path}`);
 	}
 
 	action(osu_path, output);

@@ -1,4 +1,4 @@
-const { existsSync } = require("fs");
+const { existsSync } = require("node:fs");
 const action = require("../api_tools/osu_db_fix_starrate");
 
 module.exports = async (req, res) => {

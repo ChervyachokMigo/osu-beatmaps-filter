@@ -32,7 +32,7 @@ export const StarrateFix = (args) => {
 	};
 
 	return (<div className="starrate_fix_form">
-		<div className="description">Описание: {ToolsValues.desc}</div>
+		<div className="description">Описание: {ToolsValues.starrate_fix.desc}</div>
 			<div className="input-group">
 
 				<InOutPanel 
