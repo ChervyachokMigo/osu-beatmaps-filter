@@ -19,7 +19,7 @@ export const FileDialog = (parrent) => {
 					filepath + '\\' + filename:
 					filename : 
 				filepath, 
-			accept_exts: [parrent.accept_ext]}).then( result => {
+			accept_exts: [parrent.accept_ext || '*']}).then( result => {
 
 			setFilepath(result.path);
 			setFilelist(result.filelist);
@@ -57,10 +57,17 @@ export const FileDialog = (parrent) => {
 	}
 
 	const onClickOK = () => {
-		const filename = document.getElementById('save_filename').value;
-		const res = filepath + '\\' + ( filename.endsWith(parrent.accept_ext) ? filename : filename + parrent.accept_ext );
-		parrent.onClickOK(res);
-		setActive(false);
+		if (parrent.type === 'save_file') {
+			const filename = document.getElementById('save_filename').value;
+			const res = filepath + '\\' + ( filename.endsWith(parrent.accept_ext) ? filename : filename + parrent.accept_ext );
+			parrent.onClickOK(res);
+			setActive(false);
+		}
+
+		if (parrent.type === 'dir') {
+			parrent.onClickOK(filepath);
+			setActive(false);
+		}
 	}
 
 	useEffect( () => {
@@ -94,6 +101,12 @@ export const FileDialog = (parrent) => {
 				{ parrent.type === 'save_file' ? 
 					<div className="save_block">
 						<input id="save_filename" type="text" placeholder="filename"></input>
+						<button onClick={() => onClickOK() }>OK</button>
+					</div>
+				: '' }
+
+				{ parrent.type === 'dir' ? 
+					<div className="dir_block">
 						<button onClick={() => onClickOK() }>OK</button>
 					</div>
 				: '' }

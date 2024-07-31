@@ -17,6 +17,10 @@ export const PanelValues = {
 	output: {
 		display_path_prefix_text: 'Output: ',
 		file_dialog_type: 'save_file'
+	},
+	dir: {
+		display_path_prefix_text: 'Directory: ',
+		file_dialog_type: 'dir'
 	}
 }
 

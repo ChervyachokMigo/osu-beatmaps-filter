@@ -1,8 +1,21 @@
+const path = require("path");
+const { existsSync } = require("fs");
 
 const { osu_db_load, beatmap_property, osu_db_find_beatmaps, 
 	collection_db_save, collection_db_load } = require("osu-tools");
 
-module.exports = (osu_db_path, collection_path, output_path) => {
+module.exports = (input_osu_path, output_path) => {
+
+	const osu_db_path = path.join(input_osu_path, 'osu!.db');
+	const collection_db_path = path.join(input_osu_path, 'collection.db');
+
+	if (!existsSync(osu_db_path)) {
+		throw new Error(`osu db path not found: ${osu_db_path}`);
+	}
+
+	if (!existsSync(collection_db_path)) {
+        throw new Error(`collection db path not found: ${collection_db_path}`);
+    }
 
 	const beatmap_props = [
 		beatmap_property.beatmap_md5,
@@ -50,7 +63,7 @@ module.exports = (osu_db_path, collection_path, output_path) => {
 		beatmaps_sliders.push({name: `!mania sliders ${add_zero(i)}%-${i>= 100 ? 100 : add_zero(i+offset_len)}%`, beatmaps_md5: beatmaps.map( x => x.beatmap_md5) });
 	}
 
-	const collections = collection_db_load( collection_path );
+	const collections = collection_db_load( collection_db_path );
 
 	const collection_to_save = [];
 

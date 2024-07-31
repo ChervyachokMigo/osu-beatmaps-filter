@@ -11,7 +11,7 @@ export const InOutPanel = ({
 	display_path_default_text, 
 	dialog_name, 
 	dialog_title, 
-	dialog_accept_ext,
+	dialog_accept_ext = '*',
 	filePath,
 	setFilePath,
 	button_text = default_button_text }) => {
@@ -50,6 +50,14 @@ export const InOutPanel = ({
 					onClickOK={setFilePath}
 					dialog_name={dialog_name}
 					accept_ext={dialog_accept_ext}
+				/>: ''}
+			
+			{ panel_type === 'dir'?
+				<FileDialog 
+					title={dialog_title}
+					type={PanelValues[panel_type].file_dialog_type}
+					onClickOK={setFilePath}
+					dialog_name={dialog_name}
 				/>: ''}
 
 		</div>

@@ -1,7 +1,19 @@
-
+const path = require("path");
+const { existsSync } = require("fs");
 const { osu_db_load, beatmap_property, collection_db_save, collection_db_load } = require("osu-tools");
 
-module.exports = ( input_osu_db, input_collection_db, output ) => {
+module.exports = ( input_osu_path, output ) => {
+
+	const osu_db_path = path.join(input_osu_path, 'osu!.db');
+	const collection_db_path = path.join(input_osu_path, 'collection.db');
+
+	if (!existsSync(osu_db_path)) {
+		throw new Error(`osu db path not found: ${osu_db_path}`);
+	}
+
+	if (!existsSync(collection_db_path)) {
+        throw new Error(`collection db path not found: ${collection_db_path}`);
+    }
 
 	const tags_min_count = 10;
 
@@ -11,7 +23,7 @@ module.exports = ( input_osu_db, input_collection_db, output ) => {
 		beatmap_property.tags
 	];
 
-	const osu_db_beatmaps = osu_db_load( input_osu_db, beatmap_props);
+	const osu_db_beatmaps = osu_db_load( osu_db_path, beatmap_props);
 
 	const exclude_tags = [
 		'',
@@ -47,7 +59,7 @@ module.exports = ( input_osu_db, input_collection_db, output ) => {
 		beatmaps_tags[i].beatmaps_md5 = beatmaps;
 	}
 
-	const collections = collection_db_load( input_collection_db );
+	const collections = collection_db_load( collection_db_path );
 
 	collections.collections = collections.collections.concat(beatmaps_tags);
 
