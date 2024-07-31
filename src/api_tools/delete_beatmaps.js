@@ -13,8 +13,7 @@ module.exports = (osu_path, backup_path, args) => {
 	if (!existsSync(osu_db_path)) {
 		throw new Error(`osu db path not found: ${osu_db_path}`);
 	}
-	console.log(typeof args, 'args', args);
-	return;
+
 	const beatmap_props = [
 		beatmap_property.osu_filename,
 		beatmap_property.folder_name,
