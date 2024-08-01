@@ -20,7 +20,11 @@ const _this =module.exports = {
 			try {
 				_this.check_folder(path.join(source_path, x.folder));
 				_this.check_folder(path.join(dest_path, x.folder));
-				fs.renameSync(source_filepath, dest_filepath);
+				if(fs.existsSync(source_filepath)) {
+					fs.renameSync(source_filepath, dest_filepath);
+				} else {
+					console.log(`[move] ${source_filepath} not found`);
+				}
 			} catch (e) {
 				console.error(e);
 			}
@@ -41,9 +45,9 @@ const _this =module.exports = {
 				_this.check_folder(path.join(dest_path, x.folder_name));
 				if(fs.existsSync(source_filepath)) {
 					fs.renameSync(source_filepath, dest_filepath);
-					console.log(`backup: ${source_filepath} to ${dest_filepath}`);
+					//console.log(`move: ${source_filepath} to ${dest_filepath}`);
 				} else {
-					console.log(`backup: ${source_filepath} not found`);
+					console.log(`[move] ${source_filepath} not found`);
 				}
 			} catch (e) {
 				console.error(e);

@@ -34,6 +34,23 @@ export const DeleteBeatmaps = (args) => {
         });
 	};
 
+	const RestoreBeatmaps = async () => {
+		setStatus(ActionStatus.processing);
+		POST('restore-beatmaps', {
+			input_path: inputFile,
+            input_2_path: inputFile_2
+
+		}).then( result => {
+			console.log(result);
+			setStatus(ActionStatus.finished);
+
+		}).catch( error => {
+            console.error(error);
+			setStatus(ActionStatus.error);
+
+        });
+	};
+
 	const change_args_value = (name, value, isNumber = false) => {
 		if (typeof value === "string" && !value) {
 			delete deleteBeatmapsArgs[name];
@@ -130,6 +147,12 @@ export const DeleteBeatmaps = (args) => {
 					disabled={ !inputFile || !inputFile_2 || status === ActionStatus.processing } 
 					onClick={PerformAction}>
 						Delete Beatmaps
+				</button>
+
+				<button 
+					disabled={ !inputFile || !inputFile_2 || status === ActionStatus.processing } 
+					onClick={RestoreBeatmaps}>
+						Restore Beatmaps
 				</button>
 
 				<div className="status">
