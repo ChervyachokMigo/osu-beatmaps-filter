@@ -1,4 +1,5 @@
 import { DeleteBeatmaps } from "../ToolsViews/DeleteBeatmaps"
+import { FindMissedBeatmaps } from "../ToolsViews/FindMissedBeatmaps"
 import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
 import { StarrateFix } from "../ToolsViews/StarrateFix"
 import { TagsCollections } from "../ToolsViews/TagsCollections"
@@ -25,6 +26,11 @@ export const PanelValues = {
 	}
 }
 
+export const dialog_names = {
+	input: 'input_dialog',
+	input_2: 'input_2_dialog',
+	output: 'output_dialog',
+}
 
 export const ToolsValues = {
 	none: {
@@ -56,5 +62,12 @@ export const ToolsValues = {
         title: 'Delete Beatmaps',
 		desc: 'Удаляет карты по заданным критериям (только карты, без дополнительных файлов)',
 		tag: <DeleteBeatmaps />
+	},
+	find_missed_beatmaps: {
+		name: 'find_missed_beatmaps', 
+        title: 'Find Missed Beatmaps',
+        desc: 'Находит отсутствующие карты из коллекций osu',
+        tag: <FindMissedBeatmaps />
 	}
+    
 }

@@ -11,5 +11,5 @@ module.exports = async (req, res) => {
 
 	action(osu_path, output);
 
-	await res.send(JSON.stringify({response: 'mania slider collections complete'}));
+	await res.send( JSON.stringify({ response: `${__filename} complete` }));
 }

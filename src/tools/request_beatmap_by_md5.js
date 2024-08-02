@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-module.exports = async ({ md5 }) => {
-	const api_key = null
+module.exports = async ( api_key, md5 ) => {
+
 	if (!api_key) {
 		throw new Error('no osu api key');
 	}

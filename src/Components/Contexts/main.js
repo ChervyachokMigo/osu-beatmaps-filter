@@ -1,7 +1,6 @@
 
 import { createContext,  useState } from 'react'
-import { dialog_names } from '../../consts';
-import { ActionStatus } from "../Consts/main";
+import { dialog_names, ActionStatus } from "../Consts/main";
 
 const DialogsActive = [];
 

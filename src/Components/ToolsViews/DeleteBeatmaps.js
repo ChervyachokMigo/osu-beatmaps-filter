@@ -1,9 +1,8 @@
 import { useContext, useState } from "react"
 import { ActionStatusContext } from "../Contexts/main";
 
-import { dialog_names } from "../../consts";
 import { POST } from "../../tools/request_api";
-import { ActionStatus, ToolsValues } from "../Consts/main";
+import { dialog_names, ActionStatus, ToolsValues } from "../Consts/main";
 import { InOutPanel } from "../SubComponents/InOutPanel";
 
 export const DeleteBeatmaps = (args) => {

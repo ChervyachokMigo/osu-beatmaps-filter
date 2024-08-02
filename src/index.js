@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { ActionStatusProvider, DialogsActiveProvider, DialogsPrepare, SelectedToolsProvider } from './Components/Contexts/main';
 import Main from './Components/Main';
 import './index.css';
-import { dialog_names } from './consts';
+import { dialog_names } from "./Components/Consts/main";
 
 DialogsPrepare();
 

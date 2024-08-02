@@ -18,5 +18,5 @@ module.exports = async (req, res) => {
 
 	action(osu_path, backup_path);
 
-	await res.send(JSON.stringify({response: 'restore beatmaps complete'}));
+	await res.send( JSON.stringify({ response: `${__filename} complete` }));
 }

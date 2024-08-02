@@ -11,5 +11,5 @@ module.exports = async (req, res) => {
 
 	action(input, output);
 
-	await res.send(JSON.stringify({response: 'fix starrate complete'}));
+	await res.send( JSON.stringify({ response: `${__filename} complete` }));
 }
