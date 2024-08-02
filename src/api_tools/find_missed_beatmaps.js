@@ -55,7 +55,11 @@ module.exports = async (input_osu_path, output_path, args) => {
 		}
 	}
 
+
 	fs.writeFileSync(path.join(output_path, 'founded_beatmaps.txt'), Array.from(new Set(founded_beatmaps)).join('\n'), { encoding: 'utf8'} );
+	console.log(path.join(output_path, 'founded_beatmaps.txt'), 'saved');
+	
 	fs.writeFileSync(path.join(output_path, 'missed_beatmaps.txt'), Array.from(new Set(missed_beatmaps)).join('\n'), { encoding: 'utf8'} );
+	console.log(path.join(output_path, 'missed_beatmaps.txt'), 'saved');
 
 }
