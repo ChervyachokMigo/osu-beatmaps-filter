@@ -1,5 +1,8 @@
 const { existsSync } = require("node:fs");
 const action = require("../api_tools/mania_slider_collections");
+const path = require("node:path");
+
+const request_filename = path.basename(__filename, path.extname(__filename));
 
 module.exports = async (req, res) => {
 	const osu_path = req.body.input_path;
@@ -11,5 +14,5 @@ module.exports = async (req, res) => {
 
 	action(osu_path, output);
 
-	await res.send( JSON.stringify({ response: `${__filename} complete` }));
+	await res.send( JSON.stringify({ response: `${request_filename} complete` }));
 }

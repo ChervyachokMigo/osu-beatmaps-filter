@@ -2,6 +2,7 @@
 import { DeleteBeatmaps } from "../ToolsViews/DeleteBeatmaps"
 import { FindMissedBeatmaps } from "../ToolsViews/FindMissedBeatmaps"
 import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
+import { SameBeatmaps } from "../ToolsViews/SameBeatmaps"
 import { ScoresConcat } from "../ToolsViews/ScoresConcat"
 import { StarrateCalculationProgress } from "../ToolsViews/StarrateCalculationProgress"
 import { StarrateConcat } from "../ToolsViews/StarrateConcat"
@@ -90,6 +91,12 @@ export const ToolsValues = {
         title: 'Starrate Calculation Progress',
         desc: 'Отображает прогресс расчета старрейта',
         tag: <StarrateCalculationProgress />
+	},
+	same_beatmaps: {
+		name:'same_beatmaps', 
+        title: 'Same Beatmaps',
+        desc: 'Сравнивает папки в songs osu с одинаковыми id',
+        tag: <SameBeatmaps />
 	}
     
 }
