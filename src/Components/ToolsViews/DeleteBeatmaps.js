@@ -59,7 +59,7 @@ export const DeleteBeatmaps = (args) => {
 		}
 	}
 
-	return (<div className="delete_beatmaps_form">
+	return (<div className={ToolsValues.delete_beatmaps.name + '_form'}>
 		<div className="description">Описание: {ToolsValues.delete_beatmaps.desc}</div>
 			<div className="input-group">
 

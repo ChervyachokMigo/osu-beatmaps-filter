@@ -29,7 +29,7 @@ export const TagsCollections = (args) => {
         });
 	};
 
-	return (<div className="tags_collections_form">
+	return (<div className={ToolsValues.tags_collections.name + '_form'}>
 		<div className="description">Описание: {ToolsValues.tags_collections.desc}</div>
 			<div className="input-group">
 				<InOutPanel 

@@ -1,6 +1,8 @@
+
 import { DeleteBeatmaps } from "../ToolsViews/DeleteBeatmaps"
 import { FindMissedBeatmaps } from "../ToolsViews/FindMissedBeatmaps"
 import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
+import { ScoresConcat } from "../ToolsViews/ScoresConcat"
 import { StarrateFix } from "../ToolsViews/StarrateFix"
 import { TagsCollections } from "../ToolsViews/TagsCollections"
 
@@ -68,6 +70,12 @@ export const ToolsValues = {
         title: 'Find Missed Beatmaps',
         desc: 'Находит отсутствующие карты из коллекций osu',
         tag: <FindMissedBeatmaps />
+	},
+	scores_concat: {
+		name:'scores_concat', 
+        title: 'Scores Concat',
+        desc: 'Соединяет 2 базы со скорами в одну',
+        tag: <ScoresConcat />
 	}
     
 }

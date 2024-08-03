@@ -29,7 +29,7 @@ export const ManiaSliderCollections = (args) => {
         });
 	};
 
-	return (<div className="mania_slider_collections_form">
+	return (<div className={ToolsValues.mania_slider_collections.name + '_form'}>
 		<div className="description">Описание: {ToolsValues.mania_slider_collections.desc}</div>
 			<div className="input-group">
 				<InOutPanel 

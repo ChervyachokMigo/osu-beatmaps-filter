@@ -2,26 +2,24 @@ import { useContext, useState } from "react"
 import { ActionStatusContext } from "../Contexts/main";
 
 import { POST } from "../../tools/request_api";
+
 import { dialog_names, ActionStatus, ToolsValues } from "../Consts/main";
 import { InOutPanel } from "../SubComponents/InOutPanel";
 
-export const FindMissedBeatmaps = (args) => {
+export const ScoresConcat = (args) => {
 
 	const {status, setStatus} = useContext(ActionStatusContext);
 	
 	const [inputFile, setInputFile] = useState('');
+	const [inputFile_2, setInputFile_2] = useState('');
 	const [outputFile, setOutputFile] = useState('');
-
-	const [requestArgs, setRequestArgs] = useState({
-		api_key: null
-	});
 
 	const PerformAction = async () => {
 		setStatus(ActionStatus.processing);
-		POST('find-missed-beatmaps', {
+		POST('scores-concat', {
 			input_path: inputFile,
+			input_2_path: inputFile_2,
             output_path: outputFile,
-			args: requestArgs
 
 		}).then( result => {
 			console.log(result);
@@ -34,51 +32,47 @@ export const FindMissedBeatmaps = (args) => {
         });
 	};
 
-	const change_args_value = (name, value, isNumber = false) => {
-		if (typeof value === "string" && !value) {
-			delete requestArgs[name];
-			setRequestArgs(requestArgs);
-		} else {
-			setRequestArgs({...requestArgs, [name]: isNumber ? Number(value) : value });
-		}
-	}
-
-	return (<div className={ToolsValues.find_missed_beatmaps.name + '_form'}>
-		<div className="description">Описание: {ToolsValues.find_missed_beatmaps.desc}</div>
+	return (<div className={ToolsValues.scores_concat.name + '_form'}>
+		<div className="description">Описание: {ToolsValues.scores_concat.desc}</div>
 			<div className="input-group">
 
 				<InOutPanel 
-					panel_type='dir'
-					display_path_default_text='Select osu path'
+					panel_type='input'
+					display_path_default_text='Select input first scores.db'
 					dialog_name={dialog_names.input}
-					dialog_title='Select osu path'
+					dialog_title='Select input first scores.db'
+					dialog_accept_ext='.db'
 					button_text='select'
 					filePath={inputFile}
 					setFilePath={setInputFile}
 				/>
 
 				<InOutPanel 
-					panel_type='dir'
-					display_path_default_text='Select output path'
+					panel_type='input'
+					display_path_default_text='Select input second scores.db'
+					dialog_name={dialog_names.input_2}
+					dialog_title='Select input second scores.db'
+					dialog_accept_ext='.db'
+					button_text='select'
+					filePath={inputFile_2}
+					setFilePath={setInputFile_2}
+				/>
+
+				<InOutPanel 
+					panel_type='output'
+					display_path_default_text='Select output scores.db'
 					dialog_name={dialog_names.output}
-					dialog_title='Select output path'
+					dialog_title='Select output scores.db'
+					dialog_accept_ext='.db'
 					button_text='select'
 					filePath={outputFile}
 					setFilePath={setOutputFile}
 				/>
 
-				<div className="api_key_block">
-					<label for="api_key">Api key</label>
-					<input type="text" id="api_key" name="api_key" 
-						checked={requestArgs.api_key}
-						disabled={ status === ActionStatus.processing } 
-						onChange={ (e) =>change_args_value( 'api_key', e.target.value, false ) } />
-				</div>
-
 				<button 
-					disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
+					disabled={ !inputFile || !inputFile_2 || !outputFile || status === ActionStatus.processing } 
 					onClick={PerformAction}>
-						Find Missed Beatmaps
+						Scores Concat
 				</button>
 
 				<div className="status">
