@@ -24,7 +24,7 @@ module.exports = (input_path) => {
 			if(skip_gamemodes.findIndex( x => x[0] == gamemode_int && x[1] == i ) > -1 ) continue;
 			
 			const total = beatmaps[i].count + beatmaps[i].not_count;
-			console.log('карты', gamemode[gamemode_int],`(стар-рейтинг ${gamemode[i]})`)
+			console.log('карты', gamemode[gamemode_int], i !== gamemode_int ? `(конверты в ${gamemode[i]})` : '');
 			console.log(' * посчитанных карт', beatmaps[i].count, '/', total, `(${(beatmaps[i].count/total*100).toFixed(2)}%)`);
 			console.log(' * не посчитанных карт', beatmaps[i].not_count, '/', total, `(${(beatmaps[i].not_count/total*100).toFixed(2)}%)`);
 		}
