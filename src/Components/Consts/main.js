@@ -3,6 +3,7 @@ import { DeleteBeatmaps } from "../ToolsViews/DeleteBeatmaps"
 import { FindMissedBeatmaps } from "../ToolsViews/FindMissedBeatmaps"
 import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
 import { ScoresConcat } from "../ToolsViews/ScoresConcat"
+import { StarrateConcat } from "../ToolsViews/StarrateConcat"
 import { StarrateFix } from "../ToolsViews/StarrateFix"
 import { TagsCollections } from "../ToolsViews/TagsCollections"
 
@@ -76,6 +77,12 @@ export const ToolsValues = {
         title: 'Scores Concat',
         desc: 'Соединяет 2 базы со скорами в одну',
         tag: <ScoresConcat />
+	},
+	starrate_concat: {
+		name:'starrate_concat', 
+        title: 'Starrate Concat',
+        desc: 'Добавляет старрейты в osu!.db из второй базы',
+        tag: <StarrateConcat />
 	}
     
 }
