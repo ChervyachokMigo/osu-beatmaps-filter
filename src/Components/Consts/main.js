@@ -3,6 +3,7 @@ import { DeleteBeatmaps } from "../ToolsViews/DeleteBeatmaps"
 import { FindMissedBeatmaps } from "../ToolsViews/FindMissedBeatmaps"
 import { ManiaSliderCollections } from "../ToolsViews/ManiaSliderCollections"
 import { ScoresConcat } from "../ToolsViews/ScoresConcat"
+import { StarrateCalculationProgress } from "../ToolsViews/StarrateCalculationProgress"
 import { StarrateConcat } from "../ToolsViews/StarrateConcat"
 import { StarrateFix } from "../ToolsViews/StarrateFix"
 import { TagsCollections } from "../ToolsViews/TagsCollections"
@@ -83,6 +84,12 @@ export const ToolsValues = {
         title: 'Starrate Concat',
         desc: 'Добавляет старрейты в osu!.db из второй базы',
         tag: <StarrateConcat />
+	},
+	starrate_calculation_progress: {
+		name:'starrate_calculation_progress', 
+        title: 'Starrate Calculation Progress',
+        desc: 'Отображает прогресс расчета старрейта',
+        tag: <StarrateCalculationProgress />
 	}
     
 }
