@@ -15,7 +15,7 @@ module.exports = (input_path) => {
 
 	const print_results = (gamemode_int, beatmaps) => {
 		for (let i in gamemode) {
-			if( (gamemode_int == 0 && i != gamemode_int) || gamemode_int == i ) {
+			if( gamemode_int == 0 || gamemode_int == i ) {
 
 				const total = beatmaps[i].count + beatmaps[i].not_count;
 
