@@ -36,30 +36,35 @@ module.exports = async (input_osu_path, output_path, args) => {
 
 	console.log('requesting beatmaps from bancho');
 
-	const founded_beatmaps = [];
-	const missed_beatmaps = [];
+	const checked_beatmaps = new Set();
+
+	const founded_beatmaps = new Set();
+	const missed_beatmaps = new Set();
 
 	for (const {name, beatmaps_md5} of collections_missed) {
-		console.log(
-			`processing collection: ${name}`, 
+		console.log( `processing collection: ${name}`, 
 			`(${collections_missed.findIndex( x => name === x.name)}/${collections_missed.length})`);
 
 		for (const md5 of beatmaps_md5) {
+			if (checked_beatmaps.has(md5)){
+				continue;
+			}
 			console.log(`processing beatmap: ${md5}`, `(${beatmaps_md5.indexOf(md5)}/${beatmaps_md5.length})`);
 			const info = await request_beatmap_by_md5( args.api_key, md5 );
 			if (info) {
-				founded_beatmaps.push( info.beatmapset_id );
+				founded_beatmaps.add( info.beatmapset_id );
 			} else {
-				missed_beatmaps.push( md5 );
-			}	
+				missed_beatmaps.add( md5 );
+			}
+			checked_beatmaps.add(md5);
 		}
 	}
 
 
-	fs.writeFileSync(path.join(output_path, 'founded_beatmaps.txt'), Array.from(new Set(founded_beatmaps)).join('\n'), { encoding: 'utf8'} );
+	fs.writeFileSync(path.join(output_path, 'founded_beatmaps.txt'), Array.from(founded_beatmaps).join('\n'), { encoding: 'utf8'} );
 	console.log(path.join(output_path, 'founded_beatmaps.txt'), 'saved');
 	
-	fs.writeFileSync(path.join(output_path, 'missed_beatmaps.txt'), Array.from(new Set(missed_beatmaps)).join('\n'), { encoding: 'utf8'} );
+	fs.writeFileSync(path.join(output_path, 'missed_beatmaps.txt'), Array.from(missed_beatmaps).join('\n'), { encoding: 'utf8'} );
 	console.log(path.join(output_path, 'missed_beatmaps.txt'), 'saved');
 
 }
