@@ -1,5 +1,5 @@
 const { existsSync } = require("node:fs");
-const action = require("../api_tools/osu_db_fix_starrate");
+const action = require("../api_tools/starrate_fix");
 const path = require("node:path");
 
 const request_filename = path.basename(__filename, path.extname(__filename));
