@@ -6,7 +6,10 @@ import { SameBeatmaps } from "../ToolsViews/SameBeatmaps"
 import { ScoresConcat } from "../ToolsViews/ScoresConcat"
 import { StarrateCalculationProgress } from "../ToolsViews/StarrateCalculationProgress"
 import { StarrateConcat } from "../ToolsViews/StarrateConcat"
+import { StarrateExport } from "../ToolsViews/StarrateExport"
 import { StarrateFix } from "../ToolsViews/StarrateFix"
+import { StarrateImport } from "../ToolsViews/StarrateImport"
+import { StarrateRemove } from "../ToolsViews/StarrateRemove"
 import { TagsCollections } from "../ToolsViews/TagsCollections"
 
 export const ActionStatus = {
@@ -97,6 +100,24 @@ export const ToolsValues = {
         title: 'Same Beatmaps',
         desc: 'Сравнивает папки в songs osu с одинаковыми id',
         tag: <SameBeatmaps />
+	},
+	starrate_export: {
+		name:'starrate_export', 
+        title: 'Starrate Export',
+        desc: 'Экспортирует старрейты из osu!.db в бинарный файл',
+        tag: <StarrateExport />
+	},
+	starrate_import: {
+		name:'starrate_import', 
+        title: 'Starrate Import',
+        desc: 'Импортирует старрейты из бинарного файла в osu!.db',
+        tag: <StarrateImport />
+	},
+	starrate_remove: {
+		name:'starrate_remove', 
+        title: 'Starrate Remove',
+        desc: 'Удаляет все старрейты из osu!.db',
+        tag: <StarrateRemove />
 	}
     
 }
