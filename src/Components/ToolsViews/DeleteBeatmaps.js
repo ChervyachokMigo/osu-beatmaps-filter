@@ -59,7 +59,7 @@ export const DeleteBeatmaps = (args) => {
 		}
 	}
 
-	return (<div className={ToolsValues.delete_beatmaps.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.delete_beatmaps.desc}</div>
 			<div className="input-group">
 
@@ -88,11 +88,11 @@ export const DeleteBeatmaps = (args) => {
 						checked={deleteBeatmapsArgs.backup_instead_delete}
 						disabled={ status === ActionStatus.processing } 
 						onChange={ () => change_args_value('backup_instead_delete', !deleteBeatmapsArgs.backup_instead_delete ) }/>
-					<label for="backup_instead_delete">Backup instead delete</label>
+					<label htmlFor="backup_instead_delete">Backup instead delete</label>
 				</div>
 
 				<div className="ranked_status_block">
-					<label for="ranked_status">Ranked status</label>
+					<label htmlFor="ranked_status">Ranked status</label>
 					<select id="ranked_status" name="ranked_status" 
 						disabled={ status === ActionStatus.processing } 
 						onChange={ (e) =>change_args_value( 'ranked_status', e.target.value, true ) }>
@@ -108,7 +108,7 @@ export const DeleteBeatmaps = (args) => {
 				</div>
 
 				<div className="gamemode_block">
-					<label for="gamemode">Gamemode</label>
+					<label htmlFor="gamemode">Gamemode</label>
 					<select id="gamemode" name="gamemode" 
 						disabled={ status === ActionStatus.processing } 
 						onChange={ (e) => change_args_value( 'gamemode', e.target.value, true  ) }>
@@ -122,37 +122,44 @@ export const DeleteBeatmaps = (args) => {
 
 
 				<div className="min_number_objects_block">
-					<label for="min_number_objects">Минимальное число объектов</label>
+					<label htmlFor="min_number_objects">Минимальное число объектов</label>
 					<input type="number" id="min_number_objects" name="min_number_objects"
+						placeholder="min number objects"
 						disabled={ status === ActionStatus.processing } 
 						onChange={ (e) => change_args_value('min_number_objects', e.target.value, true )} />
 				</div>
 
 				<div className="min_drain_time_block">
-					<label for="min_drain_time">Минимальное время карты</label>
+					<label htmlFor="min_drain_time">Минимальное время карты</label>
 					<input type="number" id="min_drain_time" name="min_drain_time"
+						placeholder="min drain time"
 						disabled={ status === ActionStatus.processing } 
 						onChange={ (e) => change_args_value('min_drain_time', e.target.value, true )} />
 				</div>
 				
                 <div className="min_total_time_block">
-					<label for="min_total_time">Минимальное время песни</label>
+					<label htmlFor="min_total_time">Минимальное время песни</label>
 					<input type="number" id="min_total_time" name="min_total_time"
-					disabled={ status === ActionStatus.processing } 
-					onChange={ (e) => change_args_value('min_total_time', e.target.value, true )} />
+						placeholder="min total time"
+						disabled={ status === ActionStatus.processing } 
+						onChange={ (e) => change_args_value('min_total_time', e.target.value, true )} />
 				</div>
 
-				<button 
-					disabled={ !inputFile || !inputFile_2 || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Delete Beatmaps
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !inputFile_2 || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Delete Beatmaps
+					</button>
 
-				<button 
-					disabled={ !inputFile || !inputFile_2 || status === ActionStatus.processing } 
-					onClick={RestoreBeatmaps}>
-						Restore Beatmaps
-				</button>
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !inputFile_2 || status === ActionStatus.processing } 
+						onClick={RestoreBeatmaps}>
+							Restore Beatmaps
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

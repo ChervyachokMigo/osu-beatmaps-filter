@@ -30,7 +30,7 @@ export const StarrateRemove = (args) => {
         });
 	};
 
-	return (<div className={ToolsValues.starrate_remove.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.starrate_remove.desc}</div>
 			<div className="input-group">
 
@@ -56,12 +56,15 @@ export const StarrateRemove = (args) => {
 					setFilePath={setOutputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Remove Starrates
-				</button>
-
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Remove Starrates
+					</button>
+				</div>
+				
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}
 					{status === ActionStatus.finished && 'Finished'}

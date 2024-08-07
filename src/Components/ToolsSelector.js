@@ -7,8 +7,9 @@ export const ToolsSelector = (args) => {
 	const {setName} = useContext(SelectedToolsContext);
 	const {status} = useContext(ActionStatusContext);
 	
-	const tools_tags = Object.values(ToolsValues).map( x => 
-		<option value={x.name}>{x.title}</option>
+	const tools_tags = Object.values(ToolsValues).map( (x, i) => 
+		<option key={i}
+		value={x.name}>{x.title}</option>
 	);
 
 	return (

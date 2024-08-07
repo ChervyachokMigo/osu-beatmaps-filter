@@ -28,7 +28,7 @@ export const StarrateCalculationProgress = (args) => {
         });
 	};
 
-	return (<div className={ToolsValues.starrate_calculation_progress.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.starrate_calculation_progress.desc}</div>
 			<div className="input-group">
 
@@ -43,11 +43,14 @@ export const StarrateCalculationProgress = (args) => {
 					setFilePath={setInputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Starrate Calculation Progress
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Starrate Calculation Progress
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

@@ -32,7 +32,7 @@ export const StarrateImport = (args) => {
         });
 	};
 
-	return (<div className={ToolsValues.starrate_import.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.starrate_import.desc}</div>
 			<div className="input-group">
 
@@ -69,11 +69,14 @@ export const StarrateImport = (args) => {
 					setFilePath={setOutputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile || !inputFile_2 ||  !outputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Import Starrate
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !inputFile_2 ||  !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Import Starrate
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

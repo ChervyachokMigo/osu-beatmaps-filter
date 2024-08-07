@@ -32,7 +32,7 @@ export const ScoresConcat = (args) => {
         });
 	};
 
-	return (<div className={ToolsValues.scores_concat.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.scores_concat.desc}</div>
 			<div className="input-group">
 
@@ -69,11 +69,14 @@ export const ScoresConcat = (args) => {
 					setFilePath={setOutputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile || !inputFile_2 || !outputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Scores Concat
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !inputFile_2 || !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Scores Concat
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

@@ -19,9 +19,15 @@ export default function Main() {
 		return (<div>
 			<ToolsSelector />
 			{tool.tag}
-		</div>)
+		</div>);
 	} else {
-		return (<div><ToolsSelector />No tool selected</div>)
+		return (<div>
+			<ToolsSelector />
+			<div className='form_block'>
+				<div className="description">Не выбран инструмент</div>
+			</div>
+			
+		</div>);
 	}
 	
 

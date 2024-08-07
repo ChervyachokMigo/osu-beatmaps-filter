@@ -29,7 +29,7 @@ export const ManiaSliderCollections = (args) => {
         });
 	};
 
-	return (<div className={ToolsValues.mania_slider_collections.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.mania_slider_collections.desc}</div>
 			<div className="input-group">
 				<InOutPanel 
@@ -53,11 +53,14 @@ export const ManiaSliderCollections = (args) => {
 					setFilePath={setOutputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile|| !outputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Create Mania Collection
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile|| !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Create Mania Collection
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

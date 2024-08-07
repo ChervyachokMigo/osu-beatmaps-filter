@@ -29,7 +29,7 @@ export const TagsCollections = (args) => {
         });
 	};
 
-	return (<div className={ToolsValues.tags_collections.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.tags_collections.desc}</div>
 			<div className="input-group">
 				<InOutPanel 
@@ -53,11 +53,14 @@ export const TagsCollections = (args) => {
 					setFilePath={setOutputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Create Tags Collections
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Create Tags Collections
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

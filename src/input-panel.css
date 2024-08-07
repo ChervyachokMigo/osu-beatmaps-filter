@@ -1,0 +1,102 @@
+@import url("file-dialog.css");
+
+.form_block {
+	background-color: #f2f2f2;
+	padding: 12px 20px 4px 20px;
+}
+
+.form_block .description {
+    /*margin-bottom: 20px; */
+	padding-bottom: 12px;
+    font-weight: bold; 
+
+	font-size: 16px;
+}
+
+.input-group {
+    font-size: 14px;
+}
+
+.in_out_panel {
+    display:flex; 
+    align-items:center; 
+    margin-bottom:10px; 
+	justify-content: space-between;
+}
+
+
+button {
+	border: none;
+	color: white;
+	background-color: #4CAF50;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.file_button {
+	padding: 4px 16px 4px 16px;
+    font-size: 14px;
+}
+
+.actionStart {
+    padding: 10px 20px;
+}
+
+.action_block {
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.action_block button {
+    margin-left: 10px;
+}
+
+.status {
+	height: fit-content;
+    font-weight: bold;
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+	background-color: #f0f0f0;
+}
+
+.backup_instead_delete_block {
+	display: flex;
+	flex-direction: row;
+    justify-content: flex-start;
+	margin-bottom: 10px;
+}
+
+.ranked_status_block, .gamemode_block, .min_number_objects_block, .min_drain_time_block, .min_total_time_block, .api_key_block {
+	display: flex;
+	justify-content: space-between;
+    flex-direction: row;
+	margin-bottom: 10px;
+}
+
+.input-group > div > input[type="number"], .input-group > div > input[type="text"] {
+	width: 250px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.input-group > div > select {
+	width: 264px;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}

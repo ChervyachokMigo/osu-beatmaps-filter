@@ -43,7 +43,7 @@ export const FindMissedBeatmaps = (args) => {
 		}
 	}
 
-	return (<div className={ToolsValues.find_missed_beatmaps.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.find_missed_beatmaps.desc}</div>
 			<div className="input-group">
 
@@ -68,18 +68,22 @@ export const FindMissedBeatmaps = (args) => {
 				/>
 
 				<div className="api_key_block">
-					<label for="api_key">Api key</label>
+					<label htmlFor="api_key">Api key</label>
 					<input type="text" id="api_key" name="api_key" 
+						placeholder="your API Key"
 						checked={requestArgs.api_key}
 						disabled={ status === ActionStatus.processing } 
 						onChange={ (e) =>change_args_value( 'api_key', e.target.value, false ) } />
 				</div>
 
-				<button 
-					disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
-					onClick={PerformAction}>
-						Find Missed Beatmaps
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || !outputFile || status === ActionStatus.processing } 
+						onClick={PerformAction}>
+							Find Missed Beatmaps
+					</button>
+				</div>
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}

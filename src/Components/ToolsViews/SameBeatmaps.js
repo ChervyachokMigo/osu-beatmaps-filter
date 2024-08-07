@@ -59,7 +59,7 @@ export const SameBeatmaps = (args) => {
 	};
 
 
-	return (<div className={ToolsValues.same_beatmaps.name + '_form'}>
+	return (<div className='form_block'>
 		<div className="description">Описание: {ToolsValues.same_beatmaps.desc}</div>
 			<div className="input-group">
 
@@ -73,11 +73,14 @@ export const SameBeatmaps = (args) => {
 					setFilePath={setInputFile}
 				/>
 
-				<button 
-					disabled={ !inputFile || status === ActionStatus.processing } 
-					onClick={ () => PerformAction('scan') }>
-						Same Beatmaps Scan
-				</button>
+				<div className="action_block">
+					<button 
+						className="actionStart"
+						disabled={ !inputFile || status === ActionStatus.processing } 
+						onClick={ () => PerformAction('scan') }>
+							Same Beatmaps Scan
+					</button>
+				</div>
 
 				<div className="files-group">
 					{Folders.map(({ id, folders }) => (
@@ -88,6 +91,8 @@ export const SameBeatmaps = (args) => {
 						}</div>
                     ))}
                 </div>
+
+				
 
 				<div className="status">
 					{status === ActionStatus.processing && 'Processing...'}
