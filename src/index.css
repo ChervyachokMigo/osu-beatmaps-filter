@@ -1,5 +1,6 @@
 @import url("file-dialog.css");
 @import url("input-panel.css");
+@import url("file-list.css");
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,

@@ -28,6 +28,9 @@ module.exports = async (req, res) => {
 		await res.send( JSON.stringify({ response: `${request_filename}-${action_name} complete` }));
 
 	} else {
+		if (typeof req.body.selected_id === 'number' && req.body.folder && req.body.folder.folders) {
+			action.open( osu_path, req.body.selected_id, req.body.folder.folders );
+		}
 		await res.send( JSON.stringify({ response: `${request_filename}-${action_name} complete` }));
 	}
 	

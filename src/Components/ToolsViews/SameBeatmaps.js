@@ -36,7 +36,27 @@ export const SameBeatmaps = (args) => {
         });
 	};
 
-	const FolderClick = async (beatmapset_id, name) => {
+	const OpenAction = async (beatmapset_id, name) => {
+		const folder = Folders.find( x => x.id === beatmapset_id);
+		setStatus(ActionStatus.processing);
+		POST('same-beatmaps', {
+			action: 'open',
+			input_path: inputFile,
+			selected_id: folder.folders.findIndex( x => x === name),
+			folder,
+
+		}).then( result => {
+			console.log(result);
+			setStatus(ActionStatus.finished);
+
+		}).catch( error => {
+            console.error(error);
+			setStatus(ActionStatus.error);
+
+        });
+	};
+
+	const ConcatAction = async (beatmapset_id, name) => {
 		const folder = Folders.find( x => x.id === beatmapset_id);
 		setStatus(ActionStatus.processing);
 		POST('same-beatmaps', {
@@ -85,9 +105,20 @@ export const SameBeatmaps = (args) => {
 				<div className="files-group">
 					{Folders.map(({ id, folders }) => (
                         <div id={'folder_' + id} className="folder_block">{ 
-							folders.map( name => 
-								<div className="folder" 
-									onClick={ () => FolderClick( id, name )}>{name}</div> )
+							folders.map( (name, i) => 
+								<div key={i} className="folder" >
+									<div className="folder_name">
+										{name}
+									</div>
+									<div className="actions">
+										<button onClick={ () => OpenAction(id, name) }>
+											Open
+										</button>
+										<button onClick={ () => ConcatAction(id, name) }>
+											Concat
+										</button>
+									</div>
+								</div> )
 						}</div>
                     ))}
                 </div>

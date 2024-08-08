@@ -2,6 +2,7 @@
 const path = require ('path');
 const fse = require('fs-extra');
 const {osu_db_load, beatmap_property} = require('osu-tools');
+const { exec } = require('child_process');
 
 const get_number_from_begin = (str) => Number( str.match(/^\d+/g) );
 
@@ -65,5 +66,11 @@ module.exports = {
 				}
 			}
 		}
+	},
+
+	open: (osu_path, selected_id, folders) => {
+		console.log('вы выбрали папку', folders[selected_id]);
+		const folder_path = path.join( osu_path, 'Songs', folders[selected_id] );
+		exec(`explorer.exe "${folder_path}"`);
 	}
 }

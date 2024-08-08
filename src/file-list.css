@@ -1,0 +1,24 @@
+.files-group {
+	display: flex;
+	flex-direction: column;
+	margin-top: 6px;
+}
+
+.folder_block {
+	border: 1px solid #08b80269;
+    padding: 4px 6px 0 6px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+}
+
+.folder_block .folder {
+	display: flex;
+	align-items: baseline;
+    justify-content: space-between;
+	margin-bottom: 4px;
+}
+
+.folder .actions button {
+	margin-left: 5px;
+	padding: 3px 12px 3px 12px;
+}
