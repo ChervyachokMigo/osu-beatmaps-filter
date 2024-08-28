@@ -46,6 +46,7 @@ module.exports = {
 		}
 
 		const beatmapsets_copies = beatmapsets.filter( val => val.folders.length > 1 );
+		console.log(beatmapsets_copies);
 		console.log('найдено одинаковых', beatmapsets_copies.length, 'карт');
 
 		return beatmapsets_copies;
